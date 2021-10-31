@@ -1,2 +1,0 @@
-# NetCracker
- Educational project
