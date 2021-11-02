@@ -22,12 +22,27 @@ public class Recipe {
     private int energy_value;
     @Column(name = "recipe_img_path")
     private String recipe_img_path;
-
+    //Recipe_ingridients
     @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
     @JoinTable(name = "recipe_ingridient",
             joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "ingridient_id"))
     private List<Ingridient> ingridientList;
+    //------------------
+    //Recipe_tag
+    @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
+    @JoinTable(name = "recipe_tag",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private List<Tag> tagList;
+    //----------
+    //Day_recipe
+    @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
+    @JoinTable(name = "day_recipe",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "day_id"))
+    private List<Day> dayList;
+    //----------
 
     public Recipe() {
     }
@@ -36,6 +51,12 @@ public class Recipe {
             ingridientList=new ArrayList<>();
         }
         ingridientList.add(ingridient);
+    }
+    public void addTag(Tag tag){
+        if(tagList==null){
+            tagList=new ArrayList<>();
+        }
+        tagList.add(tag);
     }
 
     public Recipe(String recipe_name, int recipe_time, String recipe_desc, int energy_value, String recipe_img_path) {
