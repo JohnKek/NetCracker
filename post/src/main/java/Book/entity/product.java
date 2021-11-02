@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "product")
-public class product {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_product")
@@ -43,7 +43,7 @@ public class product {
                 '}';
     }
 
-    public product() {
+    public Product() {
     }
 
     public int getId() {
@@ -94,7 +94,7 @@ public class product {
         this.carbonydrates = carbonydrates;
     }
 
-    public product(String name, int calories, int proteins, int fats, int carbonydrates) {
+    public Product(String name, int calories, int proteins, int fats, int carbonydrates) {
         this.name = name;
         this.calories = calories;
         this.proteins = proteins;
